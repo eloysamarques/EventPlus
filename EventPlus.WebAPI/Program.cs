@@ -1,3 +1,4 @@
+using Azure.AI.ContentSafety;
 using EventPlu.WebAPI.Repositories;
 using EventPlus.WebAPI.BdContextEvent;
 using EventPlus.WebAPI.Interfaces;
@@ -8,6 +9,14 @@ using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var endpoint = "https://moderatorservices-eloysa.cognitiveservices.azure.com/";
+var apiKey = "";
+
+var client = new ContentSafetyClient(new Uri
+    (endpoint), new Azure.AzureKeyCredential
+    (apiKey));
+
+builder.Services.AddSingleton(client);
 
 // 1. Configurar o Contexto do Banco de Dados
 builder.Services.AddDbContext<EventContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
