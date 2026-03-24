@@ -16,6 +16,8 @@ public partial class ComentarioEvento
     [Unicode(false)]
     public string Descricao { get; set; } = null!;
 
+    public bool Exibe { get; set; }
+
     [Column(TypeName = "datetime")]
     public DateTime DataComentarioEvento { get; set; }
 
